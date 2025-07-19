@@ -5,10 +5,12 @@ interface Props {
   notification: ReactNode;
   revenue: ReactNode;
   users: ReactNode;
+  login: ReactNode;
 }
 
 export default function ComplexDashboardLayout(props: Props) {
-  return (
+  const isLoggedIn = true;
+  return isLoggedIn ? (
     <div>
       <div>{props.children}</div>
       <div className="flex gap-5">
@@ -19,5 +21,7 @@ export default function ComplexDashboardLayout(props: Props) {
         <div className="flex">{props.notification}</div>
       </div>
     </div>
+  ) : (
+    props.login
   );
 }

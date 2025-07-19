@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { ErrorWrapper } from "./error-wrapper";
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +22,9 @@ export default function RootLayout({
       <body>
         <main className="flex flex-col min-h-screen">
           <Header />
-          <div className="grow">{children}</div>
+          <div className="grow">
+            <ErrorWrapper>{children}</ErrorWrapper>
+          </div>
           <Footer />
         </main>
       </body>

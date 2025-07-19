@@ -5,6 +5,17 @@ export default function Header() {
     <div className="flex justify-between items-center px-10 py-5 bg-amber-500 text-white text-xl">
       <ul className="flex justify-center items-center gap-5">
         <li>
+          <Link href="/articles/breaking-news-123?lang=en">
+            Read in English
+          </Link>
+        </li>
+        <li>
+          <Link href="/articles/breaking-news-123?lang=ar">Read in Arabic</Link>
+        </li>
+      </ul>
+
+      <ul className="flex justify-center items-center gap-5">
+        <li>
           <Link href="/products">Products</Link>
         </li>
         <li>

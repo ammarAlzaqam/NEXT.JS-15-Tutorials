@@ -19,11 +19,7 @@ const defaultTheme: Theme = {
 const ThemeContext = createContext<Theme>(defaultTheme);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  return (
-    <ThemeContext.Provider value={defaultTheme}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext value={defaultTheme}>{children}</ThemeContext>;
 }
 
 export const useTheme = () => useContext(ThemeContext);

@@ -1,8 +1,13 @@
 "use client";
 
-import { serverSideFunction } from "@/utils/server-utils";
+import ImageSlider from "@/components/imageSlider";
+
+// import { serverSideFunction } from "@/utils/server-utils";
 
 export default function ClientRoutePage() {
-  const result = serverSideFunction();
-  return <h1>Client Route: {result}</h1>;
+  //   const result = serverSideFunction();
+  const settings = {
+    dots: true,
+  };
+  return <ImageSlider />;
 }

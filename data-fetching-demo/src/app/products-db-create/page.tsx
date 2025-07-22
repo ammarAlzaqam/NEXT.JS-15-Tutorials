@@ -1,3 +1,4 @@
+import Submit from "@/components/submit";
 import Product from "@/models/product";
 import { redirect } from "next/navigation";
 
@@ -49,12 +50,7 @@ export default function AddProductPage() {
             className="w-full outline-none resize-none p-3 bg-amber-50 rounded-md text-gray-800 focus:bg-amber-100 transition"
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-cyan-600 hover:bg-cyan-700 transition cursor-pointer p-2 rounded-md"
-        >
-          Submit
-        </button>
+        <Submit />
       </form>
     </section>
   );

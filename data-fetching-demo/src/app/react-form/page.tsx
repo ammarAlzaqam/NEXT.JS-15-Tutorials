@@ -80,9 +80,7 @@ export default function ReactForm() {
         <button
           type="submit"
           disabled={loading}
-          className={`text-center mt-5 w-full bg-blue-500 text-white p-1 cursor-pointer hover:bg-cyan-600 transition rounded-sm ${
-            loading && "bg-gray-700 hover:bg-gray-800"
-          }`}
+          className={`text-center mt-5 w-full bg-blue-500 text-white p-1 cursor-pointer hover:bg-cyan-600 transition rounded-sm disabled:bg-gray-700 disabled:cursor-no-drop`}
         >
           {loading ? (
             <div className="flex justify-center items-center">

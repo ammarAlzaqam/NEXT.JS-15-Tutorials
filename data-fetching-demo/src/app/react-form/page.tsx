@@ -79,9 +79,18 @@ export default function ReactForm() {
         </div>
         <button
           type="submit"
-          className="w-full bg-cyan-600 hover:bg-cyan-700 transition cursor-pointer p-2 rounded-md"
+          disabled={loading}
+          className={`text-center mt-5 w-full bg-blue-500 text-white p-1 cursor-pointer hover:bg-cyan-600 transition rounded-sm ${
+            loading && "bg-gray-700 hover:bg-gray-800"
+          }`}
         >
-          Submit
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <i className="animate-spin w-6 h-6 rounded-full border-2 border-t-transparent border-white"></i>{" "}
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </section>

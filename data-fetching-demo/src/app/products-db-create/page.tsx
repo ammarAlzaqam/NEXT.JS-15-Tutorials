@@ -1,20 +1,24 @@
+"use client";
+
+import { createProduct, FormState } from "@/actions/products";
 import Submit from "@/components/submit";
-import Product from "@/models/product";
-import { redirect } from "next/navigation";
+
+import { useActionState } from "react";
 
 export default function AddProductPage() {
-  async function createProduct(formData: FormData) {
-    "use server";
-    const title = formData.get("title") as string;
-    const price = formData.get("price") as string;
-    const description = formData.get("description") as string;
-    await Product.create({ title, price, description });
-    redirect("/products-db");
-  }
+  const initialState: FormState = {
+    errors: {},
+  };
+
+  const [state, formAction, isPending] = useActionState(
+    createProduct,
+    initialState
+  );
+
   return (
     <section className="flex items-center justify-center min-h-screen">
       <form
-        action={createProduct}
+        action={formAction}
         className="min-w-xs md:min-w-xl p-5 bg-gray-800 rounded-lg space-y-4"
       >
         <div>
@@ -27,6 +31,9 @@ export default function AddProductPage() {
             type="text"
             className="w-full outline-none p-3 bg-amber-50 rounded-md text-gray-800 focus:bg-amber-100 transition"
           />
+          {state.errors.title && (
+            <p className="text-red-500">{state.errors.title}</p>
+          )}
         </div>
         <div>
           <label className="block" htmlFor="price">
@@ -36,8 +43,11 @@ export default function AddProductPage() {
             id="price"
             name="price"
             type="number"
-            className="w-full outline-none p-3 bg-amber-50 rounded-md text-gray-800 focus:bg-amber-100 transition"
+            className="w-full outline-none p-3 bg-amber-50 rounded-md text-gray-800 focus:bg-amber-100 transition [appearance: textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
+          {state.errors.price && (
+            <p className="text-red-500">{state.errors.price}</p>
+          )}
         </div>
         <div>
           <label className="block" htmlFor="description">
@@ -49,6 +59,9 @@ export default function AddProductPage() {
             rows={5}
             className="w-full outline-none resize-none p-3 bg-amber-50 rounded-md text-gray-800 focus:bg-amber-100 transition"
           ></textarea>
+          {state.errors.description && (
+            <p className="text-red-500">{state.errors.description}</p>
+          )}
         </div>
         <Submit />
       </form>

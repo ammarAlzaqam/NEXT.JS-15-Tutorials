@@ -67,9 +67,9 @@ export async function editProduct(
 }
 
 //! Delete product by id .
-export async function deleteProduct(formData: FormData) {
-  const id = formData.get("id") as string;
+export async function deleteProduct(id: string) {
   await connectDB();
+  await new Promise((res) => setTimeout(res, 2500));
   await Product.deleteOne({ _id: id });
   revalidatePath("/products-db");
 }

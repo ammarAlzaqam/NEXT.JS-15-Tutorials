@@ -3,6 +3,7 @@
 import connectDB from "@/libs/dbConnect";
 import Product from "@/models/product";
 import { createProductSchema } from "@/utils/validationSchema";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 type Errors = {
@@ -63,4 +64,12 @@ export async function editProduct(
   await connectDB();
   await Product.updateOne({ _id: id }, { title, price, description });
   redirect("/products-db");
+}
+
+//! Delete product by id .
+export async function deleteProduct(formData: FormData) {
+  const id = formData.get("id") as string;
+  await connectDB();
+  await Product.deleteOne({ _id: id });
+  revalidatePath("/products-db");
 }

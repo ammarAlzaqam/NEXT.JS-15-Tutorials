@@ -1,3 +1,4 @@
+import { deleteProduct } from "@/actions/products";
 import connectDB from "@/libs/dbConnect";
 import Product from "@/models/product";
 import Link from "next/link";
@@ -20,11 +21,17 @@ export default async function ProductsDBPage() {
           key={p.id}
           className="p-4 bg-white shadow-md rounded-lg text-gray-700"
         >
-          <Link href={`/products-db/${p.id}`}>
-            <h2 className="text-xl font-semibold">{p.title}</h2>
-            <p>{p.description}</p>
-            <p className="text-lg font-medium">${p.price}</p>
-          </Link>
+          <h2 className="text-xl font-semibold">
+            <Link href={`/products-db/${p.id}`}>{p.title}</Link>
+          </h2>
+
+          <p>{p.description}</p>
+          <p className="text-lg font-medium">${p.price}</p>
+
+          <form action={deleteProduct}>
+            <input type="hidden" name="id" value={p.id} />
+            <button type="submit" className="py-1 px-2 cursor-pointer bg-red-500 hover:bg-red-600 transition text-white rounded-md">Delete</button>
+          </form>
         </li>
       ))}
     </ul>

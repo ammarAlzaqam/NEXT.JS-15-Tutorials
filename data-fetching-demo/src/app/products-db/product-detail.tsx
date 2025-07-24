@@ -4,6 +4,7 @@ import { deleteProduct } from "@/actions/products";
 import Link from "next/link";
 import { Product } from "./page";
 import { useOptimistic, useState } from "react";
+import Form from "next/form";
 
 export default function ProductsDetail({ products }: { products: Product[] }) {
   const [optimisticProducts, setOptimisticProducts] = useOptimistic(
@@ -33,7 +34,7 @@ export default function ProductsDetail({ products }: { products: Product[] }) {
           <p>{p.description}</p>
           <p className="text-lg font-medium">${p.price}</p>
 
-          <form action={handelDeleteProduct}>
+          <Form action={handelDeleteProduct}>
             <input type="hidden" name="id" value={p.id} />
             <button
               type="submit"
@@ -41,7 +42,7 @@ export default function ProductsDetail({ products }: { products: Product[] }) {
             >
               Delete
             </button>
-          </form>
+          </Form>
         </li>
       ))}
     </ul>
